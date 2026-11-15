@@ -42,6 +42,9 @@
   .card p { margin: 0 0 10px; }
   .card ul { margin: 0 0 12px; padding-left: 20px; }
   .card li { margin: 2px 0; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin: 0 0 14px; }
+  .shots a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--tag-bg); }
+  .shots img { display: block; width: 100%; height: auto; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
   .tags li {
     background: var(--tag-bg); border-radius: 6px; padding: 2px 8px;
@@ -65,6 +68,10 @@
     <h3>VPN-сервис с подписками и платежами</h3>
     <p class="meta"><span class="status">Работающий MVP</span> · закрытый репозиторий · 660+ коммитов</p>
     <p>Коммерческий сервис на базе панели Remnawave: пользователь оформляет подписку в Telegram-боте, оплачивает её и автоматически получает доступ.</p>
+    <div class="shots">
+      <a href="img/vpn-1.jpg"><img src="img/vpn-1.jpg" width="1280" height="800" loading="lazy" alt="Главная страница сайта VPN-сервиса"></a>
+      <a href="img/vpn-2.jpg"><img src="img/vpn-2.jpg" width="1280" height="760" loading="lazy" alt="Выбор срока подписки и оформление покупки"></a>
+    </div>
     <ul>
       <li>Backend с тарифами, подписками, платежами, напоминаниями и блокировкой доступа при неоплате.</li>
       <li>Заменяемые слои: платёжный провайдер и VPN-панель подключены через тонкие интерфейсы.</li>
@@ -90,10 +97,15 @@
     <h3>Videocombain — кросс-публикация видео</h3>
     <p class="meta"><span class="status">Работающий MVP</span> · закрытый репозиторий · 240+ коммитов</p>
     <p>Сервис отслеживает новые видео на YouTube и Twitch и публикует их в VK Видео с названием, описанием, обложкой и таймкодами.</p>
+    <div class="shots">
+      <a href="img/videocombain-1.png"><img src="img/videocombain-1.png" width="1280" height="800" loading="lazy" alt="Веб-панель: список источников и добавление канала"></a>
+      <a href="img/videocombain-2.png"><img src="img/videocombain-2.png" width="1280" height="800" loading="lazy" alt="Веб-панель: редактор пресета для вертикальных клипов"></a>
+    </div>
     <ul>
       <li>Веб-панель с источниками, очередью публикаций и ручной модерацией.</li>
       <li>Тематический фильтр по ключевым словам, автопубликация или подтверждение в панели.</li>
       <li>Таймкоды формируются из расшифровки речи (Whisper) и LLM.</li>
+      <li>Редактор пресетов для нарезки вертикальных клипов.</li>
     </ul>
     <ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>yt-dlp</li><li>faster-whisper</li><li>Playwright</li><li>Docker</li></ul>
   </article>
@@ -102,6 +114,9 @@
     <h3>Video Summarizer — пересказ видео</h3>
     <p class="meta"><span class="status">MVP</span> · открытый репозиторий</p>
     <p>Приложение делает структурированный пересказ видео по ссылке (VK, YouTube, Twitch, Kick) или из локального файла.</p>
+    <div class="shots">
+      <a href="img/summarizer-1.png"><img src="img/summarizer-1.png" width="1280" height="800" loading="lazy" alt="Интерфейс запуска пайплайна пересказа по шагам"></a>
+    </div>
     <ul>
       <li>Пайплайн: yt-dlp/ffmpeg → WhisperX с разделением по спикерам → разбиение на части → LLM.</li>
       <li>Асинхронные задания с отслеживанием статуса, запуск с любого шага, остановка в процессе.</li>
@@ -126,6 +141,9 @@
     <h3>Revil Slots — слот-игра с симулятором RTP</h3>
     <p class="meta"><span class="status">Прототип</span> · открытый репозиторий</p>
     <p>Слот с бонусными механиками. Математическая модель вынесена в отдельный движок, а симулятор прогоняет серии вращений и считает возврат игроку (RTP).</p>
+    <div class="shots">
+      <a href="img/slot-1.jpg"><img src="img/slot-1.jpg" width="1280" height="800" loading="lazy" alt="Игровой экран слота"></a>
+    </div>
     <ul class="tags"><li>React</li><li>Vite</li><li>JavaScript</li><li>GitHub Actions</li></ul>
     <p class="links"><a href="https://github.com/Antromand/gameSlotREVIL">Код на GitHub</a></p>
   </article>
@@ -134,6 +152,9 @@
     <h3>myEvilLord — стратегия про защиту подземелья</h3>
     <p class="meta"><span class="status">Прототип</span> · открытый репозиторий</p>
     <p>2D-стратегия в реальном времени с активной паузой: игрок меняет рельеф подземелья и косвенно управляет существами, чтобы отражать волны героев.</p>
+    <div class="shots">
+      <a href="img/evillord-1.png"><img src="img/evillord-1.png" width="1280" height="720" loading="lazy" alt="Игровой экран прототипа: фаза строительства"></a>
+    </div>
     <ul class="tags"><li>Godot 4</li><li>GDScript</li></ul>
     <p class="links"><a href="https://github.com/Antromand/myEvilLord">Код на GitHub</a></p>
   </article>
