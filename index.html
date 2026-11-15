@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Антон Романов — проекты</title>
+<meta name="description" content="Pet-проекты, созданные с помощью LLM: сервисы с подписками и платежами, обработка видео, прототипы игр.">
+<style>
+  :root {
+    --bg: #f6f5f1; --card: #ffffff; --text: #1d1d1b; --muted: #62615c;
+    --line: #dddbd3; --accent: #1f5fbf; --tag-bg: #eceae3; --status: #2f6b3c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #151614; --card: #1e201d; --text: #ecebe6; --muted: #a3a29b;
+      --line: #32342f; --accent: #8ab4f8; --tag-bg: #2a2c28; --status: #8fcf9c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 48px 20px 64px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .lead { color: var(--muted); margin: 0 0 20px; max-width: 62ch; }
+  .how {
+    border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 0 0 36px;
+    max-width: 66ch;
+  }
+  h2 {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin: 36px 0 12px; font-weight: 600;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 22px; margin: 0 0 14px;
+  }
+  .card h3 { font-size: 1.15rem; margin: 0 0 2px; }
+  .meta { color: var(--muted); font-size: 0.88rem; margin: 0 0 10px; }
+  .meta .status { color: var(--status); }
+  .card p { margin: 0 0 10px; }
+  .card ul { margin: 0 0 12px; padding-left: 20px; }
+  .card li { margin: 2px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .tags li {
+    background: var(--tag-bg); border-radius: 6px; padding: 2px 8px;
+    font-size: 0.82rem; margin: 0;
+  }
+  .links { margin: 12px 0 0; font-size: 0.92rem; }
+  .links a { margin-right: 16px; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  footer { color: var(--muted); font-size: 0.88rem; margin-top: 40px; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Антон Романов — проекты</h1>
+  <p class="lead">Личные проекты, которые я веду в свободное время: от идеи и требований до развёртывания и эксплуатации.</p>
+  <p class="how">Все проекты созданы с помощью LLM. Код пишет модель; я формулирую требования, проектирую решение, ставлю задачи, проверяю результат и отвечаю за то, чтобы всё работало.</p>
+
+  <h2>Сервисы</h2>
+
+  <article class="card">
+    <h3>VPN-сервис с подписками и платежами</h3>
+    <p class="meta"><span class="status">Работающий MVP</span> · закрытый репозиторий · 660+ коммитов</p>
+    <p>Коммерческий сервис на базе панели Remnawave: пользователь оформляет подписку в Telegram-боте, оплачивает её и автоматически получает доступ.</p>
+    <ul>
+      <li>Backend с тарифами, подписками, платежами, напоминаниями и блокировкой доступа при неоплате.</li>
+      <li>Заменяемые слои: платёжный провайдер и VPN-панель подключены через тонкие интерфейсы.</li>
+      <li>PostgreSQL как источник истины, миграции, фоновые задания и журнал аудита.</li>
+      <li>Мониторинг нод в Prometheus и Grafana, автоматизированные тесты транспортов, в том числе на Android.</li>
+    </ul>
+    <ul class="tags"><li>TypeScript</li><li>Node.js</li><li>PostgreSQL</li><li>grammY</li><li>Docker</li><li>Prometheus</li><li>Grafana</li></ul>
+  </article>
+
+  <article class="card">
+    <h3>VPN-сервис с собственным control plane</h3>
+    <p class="meta"><span class="status">В разработке</span> · закрытый репозиторий · 410+ коммитов</p>
+    <p>Следующая версия сервиса, которая не зависит от сторонней панели: собственный backend управления доступом и нативные клиенты.</p>
+    <ul>
+      <li>Модульный backend на Go, обмен между модулями по схеме outbox/inbox.</li>
+      <li>Android-клиент на Kotlin, версионируемые API-контракты.</li>
+      <li>Архитектурные решения ведутся как ADR; описаны модель угроз, карта данных, выпуск и откат релизов.</li>
+    </ul>
+    <ul class="tags"><li>Go</li><li>PostgreSQL</li><li>Kotlin</li><li>TypeScript</li><li>Playwright</li><li>ADR</li></ul>
+  </article>
+
+  <article class="card">
+    <h3>Videocombain — кросс-публикация видео</h3>
+    <p class="meta"><span class="status">Работающий MVP</span> · закрытый репозиторий · 240+ коммитов</p>
+    <p>Сервис отслеживает новые видео на YouTube и Twitch и публикует их в VK Видео с названием, описанием, обложкой и таймкодами.</p>
+    <ul>
+      <li>Веб-панель с источниками, очередью публикаций и ручной модерацией.</li>
+      <li>Тематический фильтр по ключевым словам, автопубликация или подтверждение в панели.</li>
+      <li>Таймкоды формируются из расшифровки речи (Whisper) и LLM.</li>
+    </ul>
+    <ul class="tags"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>yt-dlp</li><li>faster-whisper</li><li>Playwright</li><li>Docker</li></ul>
+  </article>
+
+  <article class="card">
+    <h3>Video Summarizer — пересказ видео</h3>
+    <p class="meta"><span class="status">MVP</span> · открытый репозиторий</p>
+    <p>Приложение делает структурированный пересказ видео по ссылке (VK, YouTube, Twitch, Kick) или из локального файла.</p>
+    <ul>
+      <li>Пайплайн: yt-dlp/ffmpeg → WhisperX с разделением по спикерам → разбиение на части → LLM.</li>
+      <li>Асинхронные задания с отслеживанием статуса, запуск с любого шага, остановка в процессе.</li>
+      <li>Журнал аудита и диагностический режим.</li>
+    </ul>
+    <ul class="tags"><li>React</li><li>Vite</li><li>Node.js</li><li>Express</li><li>WhisperX</li><li>LLM</li></ul>
+    <p class="links"><a href="https://github.com/Antromand/transcriptProject">Код на GitHub</a></p>
+  </article>
+
+  <h2>Инструменты</h2>
+
+  <article class="card">
+    <h3>Codex ↔ Telegram bridge</h3>
+    <p class="meta"><span class="status">Рабочий инструмент</span> · закрытый репозиторий</p>
+    <p>Telegram-бот для управления задачами AI-агента Codex с телефона: присылает итог завершённой задачи, по ответу продолжает её и создаёт новые задачи.</p>
+    <ul class="tags"><li>JavaScript</li><li>Node.js</li><li>Telegram Bot API</li><li>Codex</li></ul>
+  </article>
+
+  <h2>Прототипы игр</h2>
+
+  <article class="card">
+    <h3>Revil Slots — слот-игра с симулятором RTP</h3>
+    <p class="meta"><span class="status">Прототип</span> · открытый репозиторий</p>
+    <p>Слот с бонусными механиками. Математическая модель вынесена в отдельный движок, а симулятор прогоняет серии вращений и считает возврат игроку (RTP).</p>
+    <ul class="tags"><li>React</li><li>Vite</li><li>JavaScript</li><li>GitHub Actions</li></ul>
+    <p class="links"><a href="https://github.com/Antromand/gameSlotREVIL">Код на GitHub</a></p>
+  </article>
+
+  <article class="card">
+    <h3>myEvilLord — стратегия про защиту подземелья</h3>
+    <p class="meta"><span class="status">Прототип</span> · открытый репозиторий</p>
+    <p>2D-стратегия в реальном времени с активной паузой: игрок меняет рельеф подземелья и косвенно управляет существами, чтобы отражать волны героев.</p>
+    <ul class="tags"><li>Godot 4</li><li>GDScript</li></ul>
+    <p class="links"><a href="https://github.com/Antromand/myEvilLord">Код на GitHub</a></p>
+  </article>
+
+  <footer>
+    GitHub: <a href="https://github.com/Antromand">github.com/Antromand</a>
+  </footer>
+</main>
+</body>
+</html>
