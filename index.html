@@ -45,6 +45,13 @@
   .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin: 0 0 14px; }
   .shots a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--tag-bg); }
   .shots img { display: block; width: 100%; height: auto; }
+  .shots a { cursor: zoom-in; }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 10; display: none; align-items: center; justify-content: center;
+    padding: 24px; background: rgba(0, 0, 0, 0.85); cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5); }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
   .tags li {
     background: var(--tag-bg); border-radius: 6px; padding: 2px 8px;
@@ -70,7 +77,8 @@
     <p>Коммерческий сервис на базе панели Remnawave: пользователь оформляет подписку в Telegram-боте, оплачивает её и автоматически получает доступ.</p>
     <div class="shots">
       <a href="img/vpn-1.jpg"><img src="img/vpn-1.jpg" width="1280" height="800" loading="lazy" alt="Главная страница сайта VPN-сервиса"></a>
-      <a href="img/vpn-2.jpg"><img src="img/vpn-2.jpg" width="1280" height="760" loading="lazy" alt="Выбор срока подписки и оформление покупки"></a>
+      <a href="img/vpn-panel.png"><img src="img/vpn-panel.png" width="1696" height="1250" loading="lazy" alt="Панель управления: трафик, пользователи и состояние процессов"></a>
+      <a href="img/vpn-monitoring.png"><img src="img/vpn-monitoring.png" width="1711" height="1261" loading="lazy" alt="Мониторинг нод в Grafana: доступность и качество туннелей"></a>
     </div>
     <ul>
       <li>Backend с тарифами, подписками, платежами, напоминаниями и блокировкой доступа при неоплате.</li>
@@ -163,5 +171,32 @@
     GitHub: <a href="https://github.com/Antromand">github.com/Antromand</a>
   </footer>
 </main>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр скриншота" tabindex="-1"><img alt=""></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox');
+  var img = box.querySelector('img');
+  var opener = null;
+  function close() {
+    box.classList.remove('open');
+    img.removeAttribute('src');
+    if (opener) { opener.focus(); opener = null; }
+  }
+  document.querySelectorAll('.shots a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      opener = a;
+      img.src = a.href;
+      img.alt = a.querySelector('img').alt;
+      box.classList.add('open');
+      box.focus();
+    });
+  });
+  box.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && box.classList.contains('open')) close();
+  });
+})();
+</script>
 </body>
 </html>
