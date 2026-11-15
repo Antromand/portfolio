@@ -61,6 +61,7 @@
   .links a { margin-right: 16px; }
   a { color: var(--accent); text-underline-offset: 2px; }
   footer { color: var(--muted); font-size: 0.88rem; margin-top: 40px; border-top: 1px solid var(--line); padding-top: 16px; }
+  footer .privacy { font-size: 0.8rem; margin: 8px 0 0; }
 </style>
 </head>
 <body>
@@ -169,6 +170,7 @@
 
   <footer>
     GitHub: <a href="https://github.com/Antromand">github.com/Antromand</a>
+    <p class="privacy">Для статистики посещений сайт записывает IP-адрес, время визита, страницу, источник перехода и тип браузера. Данные не передаются третьим лицам и удаляются через 180 дней после последнего визита.</p>
   </footer>
 </main>
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр скриншота" tabindex="-1"><img alt=""></div>
@@ -196,6 +198,20 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && box.classList.contains('open')) close();
   });
+})();
+
+// Учёт посещений (tracker/ — Cloudflare Worker). Пустой адрес — учёт выключен.
+// Открыть страницу с ?notrack — не учитывать визиты с этого браузера, ?track — снова учитывать.
+(function () {
+  var TRACKER_URL = '';
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.has('notrack')) localStorage.setItem('portfolio-notrack', '1');
+    if (q.has('track')) localStorage.removeItem('portfolio-notrack');
+    if (!TRACKER_URL || localStorage.getItem('portfolio-notrack')) return;
+    var data = JSON.stringify({ page: location.pathname, referrer: document.referrer });
+    navigator.sendBeacon(TRACKER_URL + '/hit', new Blob([data], { type: 'text/plain' }));
+  } catch (e) { /* учёт не должен ломать страницу */ }
 })();
 </script>
 </body>
