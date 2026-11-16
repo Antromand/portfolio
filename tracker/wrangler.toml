@@ -1,0 +1,18 @@
+name = "portfolio-visits"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Откуда принимаются визиты (через запятую).
+ALLOWED_ORIGINS = "https://antromand.github.io"
+# Сколько дней хранить данные IP после его последнего визита.
+RETENTION_DAYS = "180"
+# Часовой пояс для дат на странице сводки.
+TIMEZONE = "Europe/Moscow"
+
+# STATS_KEY — секрет для /stats. В репозиторий не кладётся, задаётся командой:
+#   npx wrangler secret put STATS_KEY
+
+[[kv_namespaces]]
+binding = "VISITS"
+id = "639fcc0a52044bf98886512cc2e92c1b"
